@@ -39,6 +39,8 @@
                        class="btn btn-outline-secondary">
                         Back to Recipes
                     </a>
+                @auth
+                @if($recipe->user && Auth::id() == $recipe->user->id)     
 
                     <a href="{{ route('recipes.edit', $recipe->id) }}"
                        class="btn btn-success">
@@ -47,7 +49,8 @@
 
                 </div>
                 <div class="d-flex gap-2 mt-4">
-
+    
+   
     <!-- Delete Button -->
     <form action="{{ route('recipes.destroy', $recipe->id) }}"
           method="POST">
@@ -61,8 +64,9 @@
         </button>
 
     </form>
-
-</div>
+     @endif
+     @endauth
+    </div>
 
             </div>
 

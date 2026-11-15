@@ -12,6 +12,8 @@
                 Find inspiration for your next meal!
             </p>
 
+           
+
             <a href="{{ route('recipes.create') }}" class="btn btn-success mt-2">
                 Add a New Recipe
             </a>
@@ -39,6 +41,10 @@
                             <p class="card-text text-muted">
                                 {{ $recipe->description }}
                             </p>
+
+                           @if ($recipe->user)
+                            <p>Created by: {{ $recipe->user->name }}</p>
+                           @endif
 
                             <a href="{{ route('recipes.show', $recipe->id) }}"
                                 class="btn btn-outline-success">

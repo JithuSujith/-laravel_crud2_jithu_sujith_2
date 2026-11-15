@@ -10,7 +10,7 @@
         <li class="nav-item">
             <a class="nav-link active text-white fs-4" href="{{route('home')}}">Home</a>
         </li>
-
+        @auth
         <li class="nav-item">
             <a class="nav-link text-white fs-4" href="{{route('recipes.create')}}">Create Recipes</a>
         </li>
@@ -19,7 +19,24 @@
             <a class="nav-link text-white fs-4" href="{{route('recipes.index')}}">All Recipes</a>
         </li>
 
-        
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-white fs-4" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Welcome {{Auth::user()->name}}
+          </a>
+          <ul class="dropdown-menu">
+             <li>
+                <form action="{{route('logout')}}" method="POST">
+                    @csrf
+                    <button type="submit" class="dropdown-item">Logout</button>
+                </form>
+            </li>
+              @else
+            <li><a class="dropdown-item" href="{{route('register')}}">Register</a></li>
+            <li><a class="dropdown-item" href="{{route('login')}}">Login</a></li>
+          </ul>
+        </li>
+
+        @endauth
 
     </ul>
 
